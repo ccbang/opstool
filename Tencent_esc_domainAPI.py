@@ -5,9 +5,9 @@
  @DateTime:    2016-08-10 17:14:49
  @Description:
 '''
-import os
-from datetime import datetime
+import time
 import hashlib
+import hmac
 import random
 
 SecretId = 'xxxid'
@@ -20,26 +20,50 @@ def get_all_machines(object):
     data = {
         "Action": 'DescribeInstance',
         "Region": 'gz',
-        "Timestamp": datetime.utcnow(),
+        "Timestamp": int(time.time()),
         "Nonce": random.randint(0, 1024),
         "SecretId": SecretId,
     }
-    signTxt = generate_signtrue('GET', my_domain, **data)
+    url_title = '{0}/v2/index.php?'.format(my_domain)
+    signTxt = generate_signtrue('GET', url_title, **data)
+    data["Signature"] = signTxt
+    end_agrvs = "&".join("{0}={1}".format(key, val) for key, val in data.items())
+    endUrl = "https://" + url_title + end_agrvs
+    return endUrl
 
 
 def generate_signtrue(method, url, **kwargs):
     # 将字典按照键排序 计算hash值返回
-    fullUrl = '{0}/v2/index.php?'.format(url)
     if isinstance(kwargs, dict):
         try:
-            end = sorted(kwargs, key=lambda ykey: ykey[0])
-            endStr = "{0}{1}{2}".format(method, fullUrl, ''.join(end))
-            mysha = hashlib.sha1()
-            mysha.update(endStr.encode())
-            has_ret = mysha.hexdigest()
-            return has_ret
+            end = sorted(kwargs.items(), key=lambda ykey: ykey[0])
+            urlOptions = '&'.join("{0}={1}".format(key, val) for key, val in end)
+            endStr = "{0}{1}{2}".format(method, url, urlOptions)
+            hmac_obj = hmac.new(SecretKey.encode(),
+                                endStr.encode(),
+                                digestmod=hashlib.sha1)
+            ret = base64.b64encode(hmac_obj.digest())
+            return parse.quote(ret)
         except Exception as e:
             print(e)
             return None
     else:
         return None
+
+
+def search_domain(domain):
+    get_domain = 'cns.api.qcloud.com'
+    data = {
+        "Action": 'DescribeResourceRecord',
+        "Region": 'gz',
+        "Timestamp": int(time.time()),
+        "Nonce": random.randint(0, 1024),
+        "SecretId": SecretId,
+        "domain": domain
+    }
+    url_title = '{0}/v2/index.php?'.format(get_domain)
+    signTxt = generate_signtrue('GET', url_title, **data)
+    data["Signature"] = signTxt
+    end_agrvs = "&".join("{0}={1}".format(key, val) for key, val in data.items())
+    endUrl = "https://" + url_title + end_agrvs
+    return endUrl
