@@ -1,7 +1,12 @@
 #!/usr/bin/env python
 #_*_ coding:utf-8 _*_
 
-#用途：nginx日志分析
+'''
+ @Author:      w38351479
+ @DateTime:    2016-08-17 10:14:50
+ @Description: nginx日志分析
+'''
+
 #Python 编写多步的 MapReduce 作业
 #pip install MRjob
 
