@@ -7,7 +7,7 @@
  @Description: nginx日志分析;主要功能：统计状态码/统计访问IP/网站访问流量统计/网站分钟级请求数统计
 '''
 
-#Python 编写多步的 MapReduce 作业
+#Python 编写多步的 MapReduce 作业(可用于Hadoop)
 #pip install MRjob
 
 from mrjob.job import MRJob
