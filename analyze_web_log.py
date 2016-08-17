@@ -4,7 +4,7 @@
 '''
  @Author:      w38351479
  @DateTime:    2016-08-17 10:14:50
- @Description: nginx日志分析
+ @Description: nginx日志分析;主要功能：统计状态码/统计访问IP/网站访问流量统计/网站分钟级请求数统计
 '''
 
 #Python 编写多步的 MapReduce 作业
