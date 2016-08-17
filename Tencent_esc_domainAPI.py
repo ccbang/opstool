@@ -9,12 +9,16 @@ import time
 import hashlib
 import hmac
 import random
+from HTMLParser import parse
 
 SecretId = 'xxxid'
+# 注意这里所有操作需要腾讯云服务器主账号的SecretKey
 SecretKey = 'xxxkey'
 
 
 def get_all_machines(object):
+    ''' 获得所有机器列表
+    '''
     my_domain = 'cvm.api.qcloud.com'  # 服务器请求域名
     # 传说中的公共参数
     data = {
@@ -52,6 +56,8 @@ def generate_signtrue(method, url, **kwargs):
 
 
 def search_domain(domain):
+    '''获得对应域名信息
+    '''
     get_domain = 'cns.api.qcloud.com'
     data = {
         "Action": 'DescribeResourceRecord',
