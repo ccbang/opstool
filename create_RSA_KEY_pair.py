@@ -64,4 +64,4 @@ def get_key_finger(key=""):
         return False
 
 gen_keys()
-return get_key_finger()
+finger_p = get_key_finger()
