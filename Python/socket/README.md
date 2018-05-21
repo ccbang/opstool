@@ -14,14 +14,15 @@
 
 * 获取方法 socketed.getsockopt(protocal_level, socket.opt) protocal_level 为协议层，opt 为选项
 * 设置方法 socketed.setsockopt(protocal_level, socket.opt, val)
-  | 协议层 | 选项 |可读取 |可设置 |
-  | :----------------- | :------------ | :- | :- |
-  | socket.SOL_SOCKET | SO_SNDBUF | √ | √ |
-  | socket.SOL_SOCKET | SO_RCVBUF | √ | √ |
-  | socket.SOL_SOCKET | SO_REUSEADDR | √ | √ |
-  | socket.IPPROTO_IP | IP_TTL | √ | √ |
-  | socket.IPPROTO_TCP | TCP_NODELAY | √ | √ |
-  | socket.SOL_SOCKET | TCP_MAXSEG | √ | √ |
+
+  | 协议层             | 选项         | 可读取 | 可设置 |
+  | :----------------- | :----------- | :----- | :----- |
+  | socket.SOL_SOCKET  | SO_SNDBUF    | √      | √      |
+  | socket.SOL_SOCKET  | SO_RCVBUF    | √      | √      |
+  | socket.SOL_SOCKET  | SO_REUSEADDR | √      | √      |
+  | socket.IPPROTO_IP  | IP_TTL       | √      | √      |
+  | socket.IPPROTO_TCP | TCP_NODELAY  | √      | √      |
+  | socket.SOL_SOCKET  | TCP_MAXSEG   | √      | √      |
 
 创建 TCP Socket：
 
