@@ -8,7 +8,8 @@ class Command(BaseCommand):
         parser.add_argument('name', help='名称')
 
     def handle(self, *args, **options):
-        verbosity = options['verbosity']
+        self.verbosity_ = options['verbosity']
+        verbosity = self.verbosity_
         name = options["name"]
         try:
             self.stdout.write(self.style.ERROR(f"ERROR: app2 详细程度{verbosity}, stdout:{name}"))

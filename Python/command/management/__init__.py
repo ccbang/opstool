@@ -57,7 +57,6 @@ class ManagementUtility:
             usage = [
                 "",
                 "使用 '%s help <subcommand>' 查看更多的子命令帮助." % self.prog_name,
-                "",
                 "可使用的<subcommand>:",
             ]
             commands_dict = defaultdict(lambda: [])
