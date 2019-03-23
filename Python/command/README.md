@@ -24,3 +24,11 @@ class Command(BaseCommand):
         """这里是你命令需要操作的内容，入口在这里"""
         pass
 ```
+
+颜色输出`self.stdout.write(self.style.[level](message)`
+
+level 有`'ERROR', 'SUCCESS', 'WARNING', 'NOTICE', 'MANAGE', 'DEBUG', 'FUCK',`
+
+对应颜色在 `termcolors.py` 中定义,可以按照自己爱好修改.
+
+默认`self.stderr`输出都是`red`
